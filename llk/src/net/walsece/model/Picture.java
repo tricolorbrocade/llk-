@@ -5,13 +5,7 @@ import net.walsece.game.PathPanel;
 
 import java.awt.*;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ÍõÌÎ
- * Date: 2007-4-10
- * Time: 19:26:08
- * To change this template use File | Settings | File Templates.
- */
+
 public class Picture {
     private int x;
     private int y;

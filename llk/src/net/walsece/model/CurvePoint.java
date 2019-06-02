@@ -4,13 +4,7 @@ import net.walsece.game.PathPanel;
 
 import java.awt.*;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ÍõÌÎ
- * Date: 2007-4-11
- * Time: 21:41:19
- * To change this template use File | Settings | File Templates.
- */
+
 public class CurvePoint {
     private int row;
     private int col;

@@ -4,13 +4,7 @@ import net.walsece.game.PathPanel;
 
 import java.awt.*;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ÍõÌÎ
- * Date: 2007-4-12
- * Time: 19:01:44
- * To change this template use File | Settings | File Templates.
- */
+
 public class PathLine {
     Point[] points;
     int step = 8;
@@ -56,7 +50,7 @@ public class PathLine {
                     if (points[i + 1].y - points[i].y < 0) {
                         l = -l;
                     }
-                    gp = new GradientPaint(points[i].x, points[i].y, c1, points[i].x, points[i].y + l, c2);
+                    gp = new GradientPaint(points[i].x, points[i].y+10, c1, points[i].x, points[i].y + l, c2);
                     g2d.setPaint(gp);
                     g2d.drawLine(points[i].x, points[i].y, points[i].x, points[i].y + l);
                     break;

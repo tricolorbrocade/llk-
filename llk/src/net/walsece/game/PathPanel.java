@@ -3,35 +3,28 @@ package net.walsece.game;
 import net.walsece.model.CurvePoint;
 import net.walsece.model.Picture;
 import net.walsece.model.PathLine;
-import net.walsece.test.Ball;
-
 import javax.swing.*;
 import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import java.util.List;
+import java.util.TimerTask;
 
-/**
- * Created by IntelliJ IDEA.
- * User: 王涛
- * Date: 2007-4-10
- * Time: 22:12:35
- * To change this template use File | Settings | File Templates.
- */
-public class PathPanel extends JPanel implements ActionListener {
-    java.util.List<Ball> balls = new ArrayList<Ball>();
+public class PathPanel<Ball> extends JPanel implements ActionListener {
+    private static final String JFrame = null;
+	java.util.List<Ball> balls = new ArrayList<Ball>();
     java.util.List<PathLine> lines = new ArrayList<PathLine>();
     public static int WIDTH = 70;
     public static int HEIGHT = 70;
-    public static int rows = 8, columns = 10;
-    static int PANEL_WIDTH = 800, PANEL_HEIGHT = 700;
+    public static int rows = 4, columns = 4;//行与列
+    static int PANEL_WIDTH = 800, PANEL_HEIGHT = 700;//嵌板宽度
     public static int BORDER = 1;
     Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("icons/bg11.jpg"));
     Image img_stop = Toolkit.getDefaultToolkit().getImage(getClass().getResource("icons/stop.jpg"));
 
     public static int left, top;
-    private int level = 1;
+    public static int level = 1;
 
     Timer timer;
     private int delay = 12;
@@ -41,21 +34,21 @@ public class PathPanel extends JPanel implements ActionListener {
     java.util.List<Picture> ibs;
     private Picture front_click, front_over;
 
-    Map<String, List<Picture>> maps = new HashMap<String, List<Picture>>();
+    static Map<String, List<Picture>> maps = new HashMap<String, List<Picture>>();
 
-
+   
+    
     private Image offImage;
     boolean pause;
 
     public PathPanel() {
-        ibs = IconsManage.getRandomIcons(rows * columns, maps);
+        ibs = IconsManage.getRandomIcons(rows * columns, maps);//获得随机图标
         this.pictures = new Picture[rows][columns];
         left = (PANEL_WIDTH - BORDER - columns * (WIDTH + 1)) / 2;
-        top = (PANEL_HEIGHT - BORDER - (HEIGHT + 1) * rows) / 2;
+        top = (PANEL_HEIGHT - BORDER - (HEIGHT + 1) * rows) / 2; //建立坐标
 
         initPictures();
-
-        this.addMouseListener(new MouseAdapter() {
+        this.addMouseListener(new MouseAdapter() {//鼠标监听事件
             public void mouseClicked(MouseEvent e) {
                 if (isOut(e)) {
                     if (front_click != null) {
@@ -69,7 +62,7 @@ public class PathPanel extends JPanel implements ActionListener {
                 Picture nowa = getPicture(e);
                 if (nowa != null && nowa.isVisible()) {
                     doClick(nowa);
-                    repaint();
+                    repaint(); //重新选择
                 }
             }
 
@@ -114,7 +107,7 @@ public class PathPanel extends JPanel implements ActionListener {
      */
     private Picture getPicture(MouseEvent e) {
         int x = e.getX();
-        int y = e.getY();
+        int y = e.getY();//读取坐标
         if (isOut(e)) {
             return null;
         }
@@ -122,7 +115,7 @@ public class PathPanel extends JPanel implements ActionListener {
         int row = (y - top) / (BORDER + HEIGHT);
         int col = (x - left) / (BORDER + WIDTH);
         return pictures[row][col];
-    }
+    }//返回图片的坐标
 
     boolean isOut(MouseEvent e) {
         int x = e.getX();
@@ -138,12 +131,14 @@ public class PathPanel extends JPanel implements ActionListener {
         if (maps.size() > 0) {
             return;
         }
-        JOptionPane.showMessageDialog(this, "恭喜您过了第" + level + "关，点击[确定]进入下一关");
+       MainGame.frame.setVisible(false);
+		guodu.main(null);
+      //  JOptionPane.showMessageDialog(this, "恭喜您过了第" + level + "关，点击[确定]进入下一关");
         level++;
         ibs.clear();
         ibs = IconsManage.getRandomIcons(rows * columns, maps);
         initPictures();
-    }
+    } //设定关的等级
 
     /**
      * 下移
@@ -223,7 +218,7 @@ public class PathPanel extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         synchronized (PathPanel.class) {
-            Iterator it = lines.iterator();
+            Iterator it = lines.iterator();//第一次调用Iterator的next()方法时，它返回序列的第一个元素。
 
             while (it.hasNext()) {
                 PathLine l = (PathLine) it.next();
@@ -250,7 +245,7 @@ public class PathPanel extends JPanel implements ActionListener {
 
         Graphics offg = offImage.getGraphics();
         if (pause) {
-            offg.drawImage(img_stop, 0, 0, this.getWidth(), this.getHeight(), this);
+            offg.drawImage(img_stop, 0, 0, this.getWidth(), this.getHeight(), this);//暂停时绘制指定图像中已缩放到适合指定矩形内部的图
             g.drawImage(offImage, 0, 0, this);
             return;
         }
@@ -261,7 +256,7 @@ public class PathPanel extends JPanel implements ActionListener {
             }
         }
 
-        if (lines.size() > 0) {
+        if (lines.size() > 0) {//可以连就消去
             synchronized (PathPanel.class) {
                 for (PathLine l : lines) {
                     l.draw(offg);
@@ -340,7 +335,7 @@ public class PathPanel extends JPanel implements ActionListener {
     CurvePoint[] wayRow(Picture b1, Picture b2) {
 
         Picture left = b1.getCol() < b2.getCol() ? b1 : b2;
-        Picture right = (left == b1) ? b2 : b1;
+        Picture right = (left == b1) ? b2 : b1;//判断谁在左谁在右
 
         //计算两个目标之间的重点，以保证从最近路径还是遍历
         int center = getCenter(b1.getRow(), b2.getRow());
@@ -348,29 +343,29 @@ public class PathPanel extends JPanel implements ActionListener {
 
         row:
         for (int i = 0; i < rows + 2; i++) {
-            if (center + flag * i < -1) {
+            if (center + flag * i < -1) {//如果下次移中心点的列超过了最上停止遍历，中心点下移
                 center += 1;
-            } else if (center + flag * i > rows) {
+            } else if (center + flag * i > rows) {//如果下次移中心点的行超过了最下，中心点上移
                 center -= 1;
             } else {
-                center += flag * i;
+                center += flag * i;//否则中心点不断向上向下移
                 flag = -flag;
             }
 
-            if (center > -1 && center < rows) {
+            if (center > -1 && center < rows) {//如果在区域内
                 for (int x = left.getCol(); x <= right.getCol(); x++) {
                     String id = pictures[center][x].getId();
                     if (id.equals(b1.getId()) || id.equals(b2.getId())) {
-                        continue;
+                        continue;//如果1或2获得中心点等于了b1或b2
                     }
                     if (pictures[center][x].isVisible()) {
-                        continue row;
+                        continue row;//如果出现未消除图片
                     }
                 }
             }
-            int r = left.getRow();
+            int r = left.getRow();//左点的列
 
-            int beg = r < center ? r : center;
+            int beg = r < center ? r : center;///从上向下
             int end = r < center ? center : r;
             for (int step = beg + 1; step < end; step++) {
                 if (pictures[step][left.getCol()].isVisible()) {
@@ -378,31 +373,31 @@ public class PathPanel extends JPanel implements ActionListener {
                 }
             }
 
-            r = right.getRow();
+            r = right.getRow();//右边的点
             beg = r < center ? r : center;
-            end = r < center ? center : r;
+            end = r < center ? center : r;//从下向上
             for (int step = beg + 1; step < end; step++) {
                 if (pictures[step][right.getCol()].isVisible()) {
                     continue row;
                 }
             }
 
-            CurvePoint[] points;
-            if (left.getRow() == center && right.getRow() == center) {
+            CurvePoint[] points;//比较中间点两点关系，中间有多少拐点
+            if (left.getRow() == center && right.getRow() == center) {//0拐点
                 points = new CurvePoint[2];
                 points[0] = new CurvePoint(left);
                 points[1] = new CurvePoint(right);
-            } else if (left.getRow() == center) {
+            } else if (left.getRow() == center) {//1拐点
                 points = new CurvePoint[3];
                 points[0] = new CurvePoint(left);
                 points[1] = new CurvePoint(center, right.getCol());
                 points[2] = new CurvePoint(right);
-            } else if (right.getRow() == center) {
+            } else if (right.getRow() == center) {//1拐点
                 points = new CurvePoint[3];
                 points[0] = new CurvePoint(left);
                 points[1] = new CurvePoint(center, left.getCol());
                 points[2] = new CurvePoint(right);
-            } else {
+            } else {//2拐点
                 points = new CurvePoint[4];
                 points[0] = new CurvePoint(left);
                 points[1] = new CurvePoint(center, left.getCol());
@@ -507,11 +502,7 @@ public class PathPanel extends JPanel implements ActionListener {
 
         return null;
     }
-
-    /**
-     * 提示
-     */
-    public void tishi() {
+public void tishi() {
         Picture[] maped = getMappedButtons();
         if (maped == null) {
             JOptionPane.showMessageDialog(this, "哈哈，你死了！！");

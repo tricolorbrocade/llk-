@@ -2,57 +2,94 @@ package net.walsece.game;
 
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.*;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ÍõÌÎ
- * Date: 2007-4-13
- * Time: 23:06:22
- * To change this template use File | Settings | File Templates.
- */
+import java.awt.*;
+import java.awt.event.*; 
+import java.util.Timer;
 public class status extends JPanel {
-    private long time = 600 * 1000;
+
+
+    private long time = 600 * 50;
     private PathPanel main;
     private boolean stoped = false;
     ImageIcon pause = new ImageIcon(getClass().getResource("/net/walsece/game/icons/pause.png"));
     ImageIcon con = new ImageIcon(getClass().getResource("/net/walsece/game/icons/continue.png"));
     private int times_tishi = 3;
     private int times_resort = 3;
+    JFrame frame = new JFrame("Á¬Á¬¿´");//´°ÌåÃû³Æ
 
+   
     public status(PathPanel path) {
+    	
         initComponents();
-        new Thread(new Runnable() {
-            public void run() {
+        
+           
+        
+        new Thread(new Runnable() {												
+            public void run() {   int t;   
+            	
                 while (true) {
-                    if (stoped) {
+                 
+					if (PathPanel.maps.size() > 0) {
+					
+                   if (stoped==true) {
+                	  
+                	   
                         try {
                             Thread.sleep(500);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+                      
+                        
                         continue;
+                        
                     }
-                    int t = times.getValue();
+                	
+                    
+                  
+                t= times.getValue();
                     t--;
                     times.setValue(t);
+                 
+                 
                     if (t <= 0) {
-                        break;
+                  	JOptionPane.showMessageDialog(null, "¹þ¹þ£¬ÄãËÀÁË","¹þ¹þ£¬ÄãËÀÁË", JOptionPane.ERROR_MESSAGE);
+                     
+               
+                  	break;
+                       
+                       
                     }
                     try {
                         Thread.sleep(time / 100);
                     } catch (Exception ex) {
                         break;
                     }
+                    
+                } else {
+                	break;
+                }}
+               
                 }
-            }
-        }).start();
+            
+                	
+            	
+                /*
+                if (times.getValue() <= 0) {
+                	JOptionPane.showMessageDialog(null, "¹þ¹þ£¬ÄãËÀÁË","¹þ¹þ£¬ÄãËÀÁË", JOptionPane.ERROR_MESSAGE);
+                    
+                    
+                
+                */
+                
+            
+               }).start();
         this.main = path;
         stop.setIcon(pause);
-    }
+     
 
+    }
     private void label3ActionPerformed(ActionEvent e) {
 
         this.tishi.setText("ÌáÊ¾¡Á" + (--times_tishi));
@@ -276,7 +313,7 @@ public class status extends JPanel {
     private JSlider slider1;
     private JPanel vSpacer1;
     private JPanel panel2;
-    private JProgressBar times;
+    public JProgressBar times;
     private JButton stop;
     private JButton tishi;
     private JButton resort;

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>llk</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>src/net/walsece/game/icons/bg01.jpg</name>
+			<type>1</type>
+			<locationURI>PARENT-3-PROJECT_LOC/%E6%96%B9%E9%94%A6%E9%91%AB/Documents/bg01.jpg</locationURI>
+		</link>
+	</linkedResources>
+</projectDescription>

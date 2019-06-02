@@ -9,25 +9,19 @@ import java.awt.*;
 import java.awt.List;
 import java.util.*;
 
-/**
- * Created by IntelliJ IDEA.
- * User: 王涛
- * Date: 2007-4-9
- * Time: 21:46:00
- * To change this template use File | Settings | File Templates.
- */
+
 public class IconsManage {
     static int width;
-    static int height;
+    static int height;//静态的长和宽
     static Image[] icons;
     static String folder = "icons";
 
-    public static Image[] getIcons() {
-        String path = System.getProperty("user.dir");
-        File file = new File(path, folder);
+    public static Image[] getIcons() {      //获取图标
+        String path = System.getProperty("user.dir");  //调用系统的user.dir属性，返回的就是当前用户工作目录
+        File file = new File(path, folder);//生成一个File实例
         String[] filenames = file.list(new FilenameFilter() {
             public boolean accept(File dir, String name) {
-                String ext = name.substring(name.lastIndexOf(".") + 1).toLowerCase();
+                String ext = name.substring(name.lastIndexOf(".") + 1).toLowerCase();//从后往前查
                 return isAllowed(ext, new String[]{"jpg", "jpeg", "png", "gif"});
             }
 
@@ -52,9 +46,9 @@ public class IconsManage {
 
 
     public static java.util.List<Picture> getRandomIcons(int numbers, Map<String, java.util.List<Picture>> maps) {
-        java.util.List<Picture> iconlist = new LinkedList<Picture>();
+        java.util.List<Picture> iconlist = new LinkedList<Picture>();//生成地图
         if (icons == null) {
-            icons = getIcons();
+            icons = getIcons();//如果没有图标就获取图标
         }
         int size = icons.length;
         int number = 0;
