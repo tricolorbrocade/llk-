@@ -18,19 +18,19 @@ import org.jvnet.substance.skin.SubstanceOfficeBlue2007LookAndFeel;
 
 import com.sun.glass.events.WindowEvent;
 public class guodu extends JFrame{
-		private static final long serialVersionUID = 1L;
-		private ImageIcon img;//首页背景图片 
-		private ImageIcon imgPlay, imgMore;//首页图片宽和高 和临时变量Play键More键
-	
-		private int IMGW, IMGH;
-		private int imgw, imgh;
-	//标签 布局 按钮等 监听器
-		private JLabel label;
-		private JPanel panel;
-		private JButton play, more, button;
-		private ActionListener playListener, moreListener;
-	 
-	//执行函数
+	private static final long serialVersionUID = 1L;
+	private ImageIcon img;//首页背景图片 
+	private ImageIcon imgPlay, imgMore;//首页图片宽和高 和临时变量Play键More键
+
+	private int IMGW, IMGH;
+	private int imgw, imgh;
+//标签 布局 按钮等 监听器
+	private JLabel label;
+	private JPanel panel;
+	private JButton play, more, button;
+	private ActionListener playListener, moreListener;
+ 
+//执行函数
 		public static void main(String[] args){
 			
 	        new guodu();
@@ -39,14 +39,14 @@ public class guodu extends JFrame{
 		public guodu(){
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
-			img = new ImageIcon(getClass().getResource("/net/walsece/game/icons/bg01.jpg"));//背景图片
 			IMGH = img.getIconHeight();//得到图片高
 			IMGW = img.getIconWidth();//得到图片宽
 			this.setBounds(0,0,800, 760);
-			this.setTitle("连连看");
+			
+			img = new ImageIcon(getClass().getResource("/net/walsece/game/icons/bg11.jpg"));//背景图片
+			this.setTitle("连连看");;
 			label = new JLabel(img);
 			label.setBounds(0,0,IMGW,IMGH);
-
 			this.getLayeredPane().add(label,new Integer(Integer.MIN_VALUE));
 			this.setLayout(null);
 			panel = new JPanel();
@@ -62,7 +62,7 @@ public class guodu extends JFrame{
 			play.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 				//	 MainGame M= new MainGame();
-					setVisible(false);//隐藏当前面板
+					setVisible(false);//闅愯棌褰撳墠闈㈡澘
 				
 					MainGame.main(null);
 					PathPanel Path=new PathPanel();
@@ -85,7 +85,7 @@ public class guodu extends JFrame{
 	play.addActionListener(playListener);
 	more.addActionListener(moreListener);
  }
-	//重载函数
+	//閲嶈浇鍑芥暟
 	public guodu(int i)
 {
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -167,7 +167,7 @@ public void buttonCreated2(String file,String command,int x,int y,int w,int h)
 
 }
 	public void windowOpened(WindowEvent arg0) {
-	// TODO Auto-generated method stub    
+	// TODO Auto-generated method stub聽聽 聽
 }
 	
 

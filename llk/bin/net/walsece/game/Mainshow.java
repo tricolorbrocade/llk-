@@ -4,15 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.applet.AudioClip;
 import java.io.*;
 import java.applet.Applet;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import javax.imageio.ImageIO;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -28,7 +25,6 @@ import com.sun.glass.events.WindowEvent;
 public class Mainshow extends JFrame{
 		private static final long serialVersionUID = 1L;
 		private ImageIcon img;//首页背景图片 
-		private List<BufferedImage> imageList = new ArrayList<BufferedImage>();
 		private ImageIcon imgPlay, imgMore;//首页图片宽和高 和临时变量Play键More键
 	
 		private int IMGW, IMGH;
@@ -49,12 +45,12 @@ public class Mainshow extends JFrame{
 		//重载函数
 		public Mainshow(){
 			//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+			 
 			img = new ImageIcon(getClass().getResource("/net/walsece/game/icons/bg11.jpg"));//背景图片
-			 IMGH = img.getIconHeight();//得到图片高
+			IMGH = img.getIconHeight();//得到图片高
 			IMGW = img.getIconWidth();//得到图片宽
 			this.setBounds(0,0,800, 760);
-			this.setTitle("连连看");
+			//this.setTitle("连连看");
 			label = new JLabel(img);
 			label.setBounds(0,0,IMGW,IMGH);
 			

@@ -4,58 +4,59 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.*;
-import java.awt.event.*; 
-import java.util.Timer;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import java.util.Timer;
 import org.jvnet.substance.SubstanceLookAndFeel;
 import org.jvnet.substance.skin.SubstanceOfficeBlue2007LookAndFeel;
-import javax.swing.border.MatteBorder;
+
 import com.sun.glass.events.WindowEvent;
-import com.sun.glass.events.WindowEvent;
-import java.util.Random;
 public class choujiang extends JFrame{
-		private static final long serialVersionUID = 1L;
-		private ImageIcon img;//é¦–é¡µèƒŒæ™¯å›¾ç‰‡ 
-		private ImageIcon imgPlay, imgMore, imgBack;//é¦–é¡µå›¾ç‰‡å®½å’Œé«˜ å’Œä¸´æ—¶å˜é‡Playé”®Moreé”®
-		private int IMGW, IMGH;
-		private int imgw, imgh;
-	//æ ‡ç­¾ å¸ƒå±€ æŒ‰é’®ç­‰ ç›‘å¬å™¨
-		private JLabel label;
-		private JPanel panel;
-		private JButton play, more, back, button;
+	private static final long serialVersionUID = 1L;
+	private ImageIcon img;//Ê×Ò³±³¾°Í¼Æ¬ 
+	private ImageIcon imgPlay, imgMore ,imgBack;//Ê×Ò³Í¼Æ¬¿íºÍ¸ß ºÍÁÙÊ±±äÁ¿Play¼üMore¼ü
+	// ¿ªÊ¼±êÖ¾
 		public static boolean start = false;
+		// ½±ÏîÊÇ·ñ»¹ÓĞÊ£Óà
 		public static boolean remain = true;
-		private ActionListener playListener, moreListener,backListener;
-		// å®šæ—¶å™¨
-		private Timer timer;
-		private Random random = new Random();
-		public static int i=0;
-	//æ‰§è¡Œå‡½æ•°
+		private ImageIcon img0 = new ImageIcon(getClass().getResource("/net/walsece/game/icons/bg11.jpg"));//±³¾°Í¼Æ¬
+		private ImageIcon img1 = new ImageIcon(getClass().getResource("/net/walsece/game/icons/bg11.jpg"));//±³¾°Í¼Æ¬
+		private ImageIcon img2 = new ImageIcon(getClass().getResource("/net/walsece/game/icons/bg11.jpg"));//±³¾°Í¼Æ¬
+		private ImageIcon img3 = new ImageIcon(getClass().getResource("/net/walsece/game/icons/bg11.jpg"));//±³¾°Í¼Æ¬
+		private ImageIcon img4 = new ImageIcon(getClass().getResource("/net/walsece/game/icons/bg11.jpg"));//±³¾°Í¼Æ¬
+	private int IMGW, IMGH;
+	private int imgw, imgh;
+//±êÇ© ²¼¾Ö °´Å¥µÈ ¼àÌıÆ÷
+	private JLabel label;
+	private JPanel panel;
+	private JButton play, more, back, button;
+	
+	private ActionListener playListener, moreListener,backListener;
+	public int a=0;
+ 
+//Ö´ĞĞº¯Êı
 		public static void main(String[] args){
 			
 	        new choujiang();
 	    }
-		//é‡è½½å‡½æ•°
+		//ÖØÔØº¯Êı
 		public choujiang(){
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			   
-			img = new ImageIcon(getClass().getResource("/net/walsece/game/icons/bg01.jpg"));//èƒŒæ™¯å›¾ç‰‡
-			IMGH = img.getIconHeight();//å¾—åˆ°å›¾ç‰‡é«˜
-			IMGW = img.getIconWidth();//å¾—åˆ°å›¾ç‰‡å®½
+			img = new ImageIcon(getClass().getResource("/net/walsece/game/icons/bg11.jpg"));//±³¾°Í¼Æ¬
+			IMGH = img.getIconHeight();//µÃµ½Í¼Æ¬¸ß
+			IMGW = img.getIconWidth();//µÃµ½Í¼Æ¬¿í
 			this.setBounds(0,0,800, 760);
-			this.setTitle("è¿è¿çœ‹");
+			
+			
+			this.setTitle("Á¬Á¬¿´");;
 			label = new JLabel(img);
 			label.setBounds(0,0,IMGW,IMGH);
-
 			this.getLayeredPane().add(label,new Integer(Integer.MIN_VALUE));
 			this.setLayout(null);
 			panel = new JPanel();
@@ -63,18 +64,37 @@ public class choujiang extends JFrame{
 			panel.setBounds(0,IMGH/2,IMGW,IMGH/2);
 			panel.setOpaque(false);
 			setContentPane(panel);
-			
+			back = new JButton();
 			setVisible(true);
 			getContentPane().setLayout(null);
 			
 			play = new JButton();
-			back = new JButton();
 			back.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 				//	 MainGame M= new MainGame();
-					setVisible(false);//éšè—å½“å‰é¢æ¿
+					setVisible(false);//Òş²Ø
 				
-					Mainshow.main(null);			
+					MainGame.main(null);
+					PathPanel Path=new PathPanel();
+					Path.level++;
+				}
+			});
+			
+			play.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+				
+				a=(int) (Math.random()*5);
+				switch(a){
+				case 0:
+					 JLabel label = new JLabel(img0);
+					 getContentPane().add(label);
+					 label.setBounds(0,0,100,100);
+					 break;
+					 case 1:
+					 
+					 break;
+				
+					}
 				}
 			});
 			more = new JButton();
@@ -87,64 +107,33 @@ public class choujiang extends JFrame{
 			add(play);
 			add(more);
 			add(back);
-		play.setBounds((IMGW/2)-102,(IMGH/2)+20,193,47);
+		play.setBounds((IMGH/2)-102,(IMGH/2)+20,193,47);
 	play.setBorderPainted(false);
-	more.setBounds((IMGW/2)-102,(IMGH/2)+100,193,47);
+	more.setBounds((IMGH/2)-102,(IMGH/2)+100,193,47);
 	more.setBorderPainted(false);
-	back.setBounds((IMGW/2)-102,(IMGH/2)+180,193,47);
+	back.setBounds((IMGH/2)-102,(IMGH/2)+180,193,47);
 	back.setBorderPainted(false);
 	//playListener = new PlayListener();
 	 //moreListener = new MoreListener();
 	play.addActionListener(playListener);
 	more.addActionListener(moreListener);
 	back.addActionListener(backListener);
+	if(remain==false) {play.setEnabled(false);
+	more.setEnabled(true);
 	
-	 if(remain) {
-	while (true) {     		 
-			
-        if (start==true) {
-     	   i= (int) (Math.random() * 5 );
-     	   
-             try {
-                 Thread.sleep(500);
-                 switch(i){
-                 case 0:
-                 drawImage(a,0,0,20);       
-                 case 1:
-                 drawImage(b,0,0,20);
-                 case 2:
-                	 drawImage(b,0,0,20);
-                 case 3:
-                     drawImage(b,0,0,20);
-                 case 4:
-                     drawImage(b,0,0,20);
-                 
-}
-             } catch (Exception e) {
-                 e.printStackTrace();
-             }
-           
-             
-             continue;
-             
-         }
-        else {
-        	
-       	continue;}
-           
-     }}
-	else{play.setEnabled(false);}
+	}
+	else {play.setEnabled(true);
+	more.setEnabled(false);}
  }
-	//é‡è½½å‡½æ•°
+	
 	public choujiang(int i)
 {
-		
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	img=new ImageIcon("src/images/bg01.png");
 	IMGH=img.getIconHeight();
 	IMGW=img.getIconWidth();
 	this.setBounds(200, 200, IMGW, IMGH);
-	this.setTitle("è¿è¿çœ‹");
+	this.setTitle("Á¬Á¬¿´");
 	label = new JLabel(img);
 	label.setBounds(0,0,IMGW,IMGH);
 	this.getLayeredPane().add(label,new Integer(Integer.MIN_VALUE));
