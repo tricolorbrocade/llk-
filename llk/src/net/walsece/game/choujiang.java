@@ -1,10 +1,15 @@
 package net.walsece.game;
 
+import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import javax.swing.JComponent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -25,28 +30,28 @@ public class choujiang extends JFrame{
 		public static boolean start = false;
 		// 奖项是否还有剩余
 		public static boolean remain = true;
-		private ImageIcon img0 = new ImageIcon(getClass().getResource("/net/walsece/game/icons/bg11.jpg"));//背景图片
-		private ImageIcon img1 = new ImageIcon(getClass().getResource("/net/walsece/game/icons/bg11.jpg"));//背景图片
-		private ImageIcon img2 = new ImageIcon(getClass().getResource("/net/walsece/game/icons/bg11.jpg"));//背景图片
-		private ImageIcon img3 = new ImageIcon(getClass().getResource("/net/walsece/game/icons/bg11.jpg"));//背景图片
-		private ImageIcon img4 = new ImageIcon(getClass().getResource("/net/walsece/game/icons/bg11.jpg"));//背景图片
 	private int IMGW, IMGH;
 	private int imgw, imgh;
 //标签 布局 按钮等 监听器
 	private JLabel label;
 	private JPanel panel;
 	private JButton play, more, back, button;
-	
+	  private Image picture;
 	private ActionListener playListener, moreListener,backListener;
 	public int a=0;
- 
+	Image img_stop1 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("icons/bg11.jpg"));
+	Image img_stop2 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("icons/bg11.jpg"));
+	Image img_stop3 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("icons/bg11.jpg"));
+	Image img_stop4 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("icons/bg11.jpg"));
+	Image img_stop5 = Toolkit.getDefaultToolkit().getImage(getClass().getResource("icons/bg11.jpg"));
+
 //执行函数
 		public static void main(String[] args){
 			
-	        new choujiang();
+	        new choujiang(null);
 	    }
 		//重载函数
-		public choujiang(){
+		public choujiang(Graphics g){
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			img = new ImageIcon(getClass().getResource("/net/walsece/game/icons/bg11.jpg"));//背景图片
 			IMGH = img.getIconHeight();//得到图片高
@@ -82,18 +87,42 @@ public class choujiang extends JFrame{
 			
 			play.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-				
+					
+					if (picture == null) {
+			            picture= createImage(300, 300);
+			        }
 				a=(int) (Math.random()*5);
 				switch(a){
 				case 0:
-					 JLabel label = new JLabel(img0);
-					 getContentPane().add(label);
-					 label.setBounds(0,0,100,100);
+					Graphics offg = picture.getGraphics();
+					  offg.drawImage(img_stop1, 300, 3000, 300, 300 , null);//暂停时绘制指定图像中已缩放到适合指定矩形内部的图
+			            g.drawImage(picture, 0, 0,null);
+			          //  return; 
 					 break;
-					 case 1:
-					 
+					 case 2:
+							Graphics offg1 = picture.getGraphics();
+							  offg1.drawImage(img_stop1, 300, 3000, 300, 300 , null);//暂停时绘制指定图像中已缩放到适合指定矩形内部的图
+					            g.drawImage(picture, 0, 0,null);
+					   //         return; 
 					 break;
-				
+					 case 3:
+						 Graphics offg2 = picture.getGraphics();
+						  offg2.drawImage(img_stop1, 300, 3000, 300, 300 , null);//暂停时绘制指定图像中已缩放到适合指定矩形内部的图
+				            g.drawImage(picture, 0, 0,null);
+				       //     return; 
+					 break;
+					 case 4:
+						 Graphics offg3 = picture.getGraphics();
+						  offg3.drawImage(img_stop1, 300, 3000, 300, 300 , null);//暂停时绘制指定图像中已缩放到适合指定矩形内部的图
+				            g.drawImage(picture, 0, 0,null);
+				        //    return;  
+					break;
+					 case 5:
+						 Graphics offg4 = picture.getGraphics();
+						  offg4.drawImage(img_stop1, 300, 3000, 300, 300 , null);//暂停时绘制指定图像中已缩放到适合指定矩形内部的图
+				            g.drawImage(picture, 0, 0,null);
+				          // return;
+						 break;
 					}
 				}
 			});
@@ -156,18 +185,7 @@ buttonCreated2("src/"+cols+".png",cols+"",cols*imgw,rows*imgh,imgw,imgh);
 	this.setContentPane(panel);
 	this.setVisible(true);
  }
-
-
-
-	
-   
- 
-
-
-
-
   
-
 public void buttonCreated2(String file,String command,int x,int y,int w,int h)
 		{
 	img=new ImageIcon(file);

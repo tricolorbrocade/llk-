@@ -11,8 +11,9 @@ import org.jvnet.substance.skin.SubstanceOfficeBlue2007LookAndFeel;
 
 
 public class MainGame extends JPanel { //继承图形界面工具包（面板容器）
-    public static  JFrame frame = new JFrame("连连看");//窗体名称
-	static void uiInit() {
+   // public static  JFrame frame = new JFrame("连连看");//窗体名称
+    
+    static void uiInit() {
         try {
             Font font = new Font("宋体", Font.PLAIN, 12);
             UIManager.put("Label.font", font);//添加标签字体
@@ -31,13 +32,16 @@ public class MainGame extends JPanel { //继承图形界面工具包（面板容器）
     	this.setVisible(false);
     	new Panel();
     	}
+    	
     public MainGame() {
     	
-    	uiInit();
-        
-        PathPanel panel = new PathPanel();
+    	//uiInit();
+    	JFrame frame=new JFrame();//创建一个窗口
+        NewJPanel panel = new NewJPanel(frame);
+    
      //  JFrame frame = new JFrame("连连看");//窗体名称
-        frame.setContentPane(new Maingameshow());
+       // frame.setContentPane(new NewJPanel(null));
+    	frame.add(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);////用户单击窗口的关闭按钮时程序执行的操作
 
         frame.setSize(800, 760);//窗体长宽

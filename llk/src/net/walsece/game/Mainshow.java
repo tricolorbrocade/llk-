@@ -85,7 +85,7 @@ public class Mainshow extends JFrame{
 			more.setIcon(imgMore);
 			add(play);
 			add(more);
-		play.setBounds((IMGW/2)-102,(IMGH/2)+23,193,47);
+	play.setBounds((IMGW/2)-102,(IMGH/2)+23,193,47);
 	play.setBorderPainted(false);
 	more.setBounds((IMGW/2)-102,(IMGH/2)+100,193,47);
 	more.setBorderPainted(false);

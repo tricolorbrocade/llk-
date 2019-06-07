@@ -131,8 +131,8 @@ public class PathPanel<Ball> extends JPanel implements ActionListener {
         if (maps.size() > 0) {
             return;
         }
-       MainGame.frame.setVisible(false);
-		guodu.main(null);
+   //    MainGame.frame.setVisible(false);
+		//guodu.main(null);
       //  JOptionPane.showMessageDialog(this, "恭喜您过了第" + level + "关，点击[确定]进入下一关");
         level++;
         ibs.clear();

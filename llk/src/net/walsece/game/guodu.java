@@ -36,9 +36,11 @@ public class guodu extends JFrame{
 	        new guodu();
 	    }
 		//重载函数
+	
 		public guodu(){
+		
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			
+			img = new ImageIcon(getClass().getResource("/net/walsece/game/icons/bg11.jpg"));//背景图片
 			IMGH = img.getIconHeight();//得到图片高
 			IMGW = img.getIconWidth();//得到图片宽
 			this.setBounds(0,0,800, 760);
