@@ -23,7 +23,7 @@ import javax.swing.UIManager;
 
 import org.jvnet.substance.SubstanceLookAndFeel;
 import org.jvnet.substance.skin.SubstanceOfficeBlue2007LookAndFeel;
-
+import net.walsece.game.guodu1;
 import com.sun.glass.events.WindowEvent;
 public class Mainshow extends JFrame{
 		private static final long serialVersionUID = 1L;

@@ -13,20 +13,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import net.walsece.game.Maingameshow;
-import net.walsece.game.PathPanel;
-public class NewJPanel extends javax.swing.JPanel {
+public class guodu1 extends javax.swing.JPanel {
 	 Image image=null;
     /**
-     * Creates new form NewJPanel
+     * Creates new form guodu1
      */
 	JFrame n2=null;
 	private JButton play, more, button;
 	private ImageIcon imgPlay, imgMore;//首页图片宽和高 和临时变量Play键More键
-    public NewJPanel(JFrame n2) {
+    public guodu1(JFrame n2) { Maingameshow.level++;
         initComponents();
         this.n2=n2;//通过构造函数接收之前传过来的面板
+       
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents()  {
@@ -52,25 +52,9 @@ public class NewJPanel extends javax.swing.JPanel {
     	 label.setIcon(image);
     	 label.setBounds(0,0,500,312);
     	 add(label);
-        
-        play.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-                Maingameshow p1=new Maingameshow(n2);//新建面板NewJPanel2，并将窗口n2传入
-                setVisible(false);//隐藏当前面板
-                n2.add(p1);//在窗口中添加面板p1
-                n2.setVisible(true);//显示面板
-            }
-        });
-        more.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-                Maingameshow p1=new Maingameshow(n2);//新建面板NewJPanel2，并将窗口n2传入
-                setVisible(false);//隐藏当前面板
-                n2.add(p1);//在窗口中添加面板p1
-                n2.setVisible(true);//显示面板
-            }
-        });
+    	 more.requestFocus();
+    	 play.requestFocus();
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
       
         this.setLayout(layout);
@@ -89,6 +73,24 @@ public class NewJPanel extends javax.swing.JPanel {
                 .addContainerGap(187, Short.MAX_VALUE))
         );
        jButton1.setVisible(false);
+  	 play.addActionListener(new java.awt.event.ActionListener() {
+	        public void actionPerformed(java.awt.event.ActionEvent evt) {
+	            jButton1ActionPerformed(evt);
+	            Maingameshow p3=new Maingameshow(n2);//新建面板guodu12，并将窗口n2传入
+	            setVisible(false);//隐藏当前面板
+	            n2.add(p3);//在窗口中添加面板p1
+	            n2.setVisible(true);//显示面板
+	        }
+	    });
+	    more.addActionListener(new java.awt.event.ActionListener() {
+	        public void actionPerformed(java.awt.event.ActionEvent evt) {
+	            jButton1ActionPerformed(evt);
+	            Maingameshow p3=new Maingameshow(n2);//新建面板guodu12，并将窗口n2传入
+	            setVisible(false);//隐藏当前面板
+	            n2.add(p3);//在窗口中添加面板p1
+	            n2.setVisible(true);//显示面板
+	        }
+	    });
     }// </editor-fold>                        
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -96,5 +98,6 @@ public class NewJPanel extends javax.swing.JPanel {
     }                                        
     // Variables declaration - do not modify                     
     private javax.swing.JButton jButton1;
-    // End of variables declaration                   
+    // End of variables declaration        
+    
 }

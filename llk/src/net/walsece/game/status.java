@@ -16,11 +16,12 @@ public class status extends JPanel {
     ImageIcon con = new ImageIcon(getClass().getResource("/net/walsece/game/icons/continue.png"));
     private int times_tishi = 3;
     private int times_resort = 3;
-    JFrame frame = new JFrame("连连看");//窗体名称
-
+    //JFrame frame = new JFrame("连连看");//窗体名称
+    JFrame n2=null;
    
-    public status(PathPanel path) {
-    	
+    public status(JFrame n2,PathPanel path) {
+    //	
+    	this.n2=n2;
         initComponents();
         
            
@@ -44,19 +45,15 @@ public class status extends JPanel {
                         
                         continue;
                         
-                    }
-                	
-                    
-                  
+                    }         
                 t= times.getValue();
                     t--;
-                    times.setValue(t);
-                 
-                 
+                    times.setValue(t);  
                     if (t <= 0) {
                   	JOptionPane.showMessageDialog(null, "哈哈，你死了","哈哈，你死了", JOptionPane.ERROR_MESSAGE);
                      
-               
+                  	 
+                  	setVisible(false);
                   	break;
                        
                        
@@ -67,7 +64,7 @@ public class status extends JPanel {
                         break;
                     }
                     
-                } else {
+                } else {setVisible(false);
                 	break;
                 }}
                
@@ -302,7 +299,7 @@ public class status extends JPanel {
         }
         add(panel2);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
-    }
+        }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - wang tao
@@ -313,7 +310,7 @@ public class status extends JPanel {
     private JSlider slider1;
     private JPanel vSpacer1;
     private JPanel panel2;
-    public JProgressBar times;
+    public static JProgressBar times;
     private JButton stop;
     private JButton tishi;
     private JButton resort;

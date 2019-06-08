@@ -35,11 +35,11 @@ public class MainGame extends JPanel { //继承图形界面工具包（面板容器）
     	
     public MainGame() {
     	
-    	//uiInit();
+    	uiInit();
     	JFrame frame=new JFrame();//创建一个窗口
         NewJPanel panel = new NewJPanel(frame);
     
-     //  JFrame frame = new JFrame("连连看");//窗体名称
+     //  JFrame frame = new JFeame("连连看");//窗体名称
        // frame.setContentPane(new NewJPanel(null));
     	frame.add(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);////用户单击窗口的关闭按钮时程序执行的操作

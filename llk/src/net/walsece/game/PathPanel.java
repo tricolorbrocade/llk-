@@ -10,22 +10,23 @@ import java.awt.event.*;
 import java.util.*;
 import java.util.List;
 import java.util.TimerTask;
-
+import net.walsece.game.guodu1;
 public class PathPanel<Ball> extends JPanel implements ActionListener {
-    private static final String JFrame = null;
+   // private static final String JFrame = null;
 	java.util.List<Ball> balls = new ArrayList<Ball>();
     java.util.List<PathLine> lines = new ArrayList<PathLine>();
     public static int WIDTH = 70;
     public static int HEIGHT = 70;
+    
     public static int rows = 4, columns = 4;//行与列
     static int PANEL_WIDTH = 800, PANEL_HEIGHT = 700;//嵌板宽度
     public static int BORDER = 1;
     Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("icons/bg11.jpg"));
     Image img_stop = Toolkit.getDefaultToolkit().getImage(getClass().getResource("icons/stop.jpg"));
-
+	JFrame n2=null;
     public static int left, top;
-    public static int level = 1;
-
+    //public static int level = 1;
+   
     Timer timer;
     private int delay = 12;
     private boolean stoped;
@@ -41,7 +42,9 @@ public class PathPanel<Ball> extends JPanel implements ActionListener {
     private Image offImage;
     boolean pause;
 
-    public PathPanel() {
+    public PathPanel(JFrame n2) {
+    	this.n2=n2;//通过构造函数接收之前传过来的面板
+    	
         ibs = IconsManage.getRandomIcons(rows * columns, maps);//获得随机图标
         this.pictures = new Picture[rows][columns];
         left = (PANEL_WIDTH - BORDER - columns * (WIDTH + 1)) / 2;
@@ -131,13 +134,20 @@ public class PathPanel<Ball> extends JPanel implements ActionListener {
         if (maps.size() > 0) {
             return;
         }
+        else {
+  
    //    MainGame.frame.setVisible(false);
 		//guodu.main(null);
       //  JOptionPane.showMessageDialog(this, "恭喜您过了第" + level + "关，点击[确定]进入下一关");
-        level++;
+        	
+        //	guodu1 p2=new guodu1(n2);//新建面板NewJPanel2，并将窗口n2传入
+         //   setVisible(false);//隐藏当前面板
+         //   n2.add(p2);//在窗口中添加面板p1
+        //    n2.setVisible(true);//显示面板                 
+        Maingameshow.level++;
         ibs.clear();
         ibs = IconsManage.getRandomIcons(rows * columns, maps);
-        initPictures();
+        initPictures();}
     } //设定关的等级
 
     /**
@@ -310,7 +320,7 @@ public class PathPanel<Ball> extends JPanel implements ActionListener {
     }
 
     public int getLevel() {
-        return level;
+        return Maingameshow.level;
     }
 
     public CurvePoint[] getPoints(Picture b1, Picture b2) {
@@ -525,7 +535,7 @@ public void tishi() {
      */
     public void reSort() {
         initPictures();
-        switch (level) {
+        switch (Maingameshow.level) {
             case 2:
                 downAll();
                 break;
@@ -623,5 +633,6 @@ public void tishi() {
         }
     }
 
+ 
 
 }
