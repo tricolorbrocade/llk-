@@ -1,7 +1,19 @@
 package net.walsece.game;
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.io.File;
+import java.net.URI;
+import java.net.URL;
+import java.applet.AudioClip; 
+import java.io.*; 
+import java.applet.Applet;
+import java.net.MalformedURLException; 
+import java.net.URI;
+import java.net.URL;
+import javax.swing.JFrame;
 import javax.swing.*;
 import java.util.*;
 
@@ -9,12 +21,15 @@ import org.jvnet.substance.SubstanceLookAndFeel;
 import org.jvnet.substance.skin.SubstanceOfficeBlue2007LookAndFeel;
 import net.walsece.game.NewJPanel;
 import net.walsece.game.guodu1;
-
+import net.walsece.game.victory;
 public class Maingameshow extends JPanel {
 	JFrame n2=null;
  Maingameshow panel;
+
  public static int level =1;
 	 public Maingameshow(JFrame n2) {
+		 //
+	
 		 	this.n2=n2;
 	      //  PathPanel panel = new PathPanel();
 	        //this.setLayout(new BorderLayout());//布局管理器
@@ -28,15 +43,15 @@ public class Maingameshow extends JPanel {
 		                	if (PathPanel.maps.size() > 0) {
 		    					
 		                 
-		                         if (status.times.getValue() <= 0) {
-		                      		                       	 
-		                        	 guodu1 p2=new guodu1(n2);//新建面板NewJPanel2，并将窗口n2传入
-		                        	 level++;
+		                         if (status.times.getValue() <= 0||PathPanel.shibai==1) {
+		                        	 PathPanel.shibai=0;                 	 
+		                        	 failed  p3=new failed(n2);//新建面板NewJPanel2，并将窗口n2传入
+		                    
 		 		                 	setVisible(false);
 		 		                
-		 		                	n2.add(p2);//在窗口中添加面板p1
+		 		                	n2.add(p3);//在窗口中添加面板p3
 		 		                      n2.setVisible(true);//显示面板
-		 		                      
+		 		                    
 		                       	break;
 		                            
 		                            
@@ -47,12 +62,21 @@ public class Maingameshow extends JPanel {
 		                             break;
 		                         }
 		                         
-		                     } else {guodu1 p2=new guodu1(n2);//新建面板NewJPanel2，并将窗口n2传入
+		                     } else {
+		                    	 if(level!=3) {
+		                     
+		                    	 guodu1 p2=new guodu1(n2);//新建面板NewJPanel2，并将窗口n2传入
 		                 	setVisible(false);
 		                	n2.add(p2);//在窗口中添加面板p1
 		                      n2.setVisible(true);//显示面板
-		                     	break;
+		                     	break;}
+		                     else { victory p4=new victory(n2);//新建面板NewJPanel2，并将窗口n2传入
+			                 	setVisible(false);
+			                	n2.add(p4);//在窗口中添加面板p1
+			                      n2.setVisible(true);//显示面板}
+			                      break;
 		                     }}
+		                     }
 		               
 		                }	
 	    }).start();

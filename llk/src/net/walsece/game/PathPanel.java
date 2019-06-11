@@ -1,5 +1,13 @@
 package net.walsece.game;
-
+import java.util.*;
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
 import net.walsece.model.CurvePoint;
 import net.walsece.model.Picture;
 import net.walsece.model.PathLine;
@@ -17,16 +25,25 @@ public class PathPanel<Ball> extends JPanel implements ActionListener {
     java.util.List<PathLine> lines = new ArrayList<PathLine>();
     public static int WIDTH = 70;
     public static int HEIGHT = 70;
-    
+    public static int shibai=0;
     public static int rows = 4, columns = 4;//行与列
     static int PANEL_WIDTH = 800, PANEL_HEIGHT = 700;//嵌板宽度
     public static int BORDER = 1;
-    Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("icons/bg11.jpg"));
+    Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("icons/beijing4.png"));
     Image img_stop = Toolkit.getDefaultToolkit().getImage(getClass().getResource("icons/stop.jpg"));
 	JFrame n2=null;
     public static int left, top;
     //public static int level = 1;
-   
+    File f;
+    File q;File w;File t;
+    URI urq;
+    URL urqq; 
+    URI urw;
+    URL urww; 
+    URI urt;
+    URL urtt; 
+	 URI uri;
+	    URL url; 
     Timer timer;
     private int delay = 12;
     private boolean stoped;
@@ -37,11 +54,12 @@ public class PathPanel<Ball> extends JPanel implements ActionListener {
 
     static Map<String, List<Picture>> maps = new HashMap<String, List<Picture>>();
 
-   
-    
+    private ImageIcon chou1,chou2,chou3;
+    private int jiehe=0;
     private Image offImage;
     boolean pause;
-
+JLabel  label20=null;
+	private int jishi=0;
     public PathPanel(JFrame n2) {
     	this.n2=n2;//通过构造函数接收之前传过来的面板
     	
@@ -89,8 +107,34 @@ public class PathPanel<Ball> extends JPanel implements ActionListener {
 
             }
         });
-    }
+        if(choujiang.yuyin==1) {
+        	try {    q = new File("Music/laiba.wav"); 
+            urq = q.toURI();
+            urqq = urq.toURL();  //解析地址
+            AudioClip qqu; 
+            qqu = Applet.newAudioClip(urqq);
+            qqu.play();  //循环播放
+        } catch (Exception e) 
+        { e.printStackTrace();
+        }   
+       
+        	 chou1=new ImageIcon("jiangpin/tu1.jpeg");
+        	 chou2=new ImageIcon("jiangpin/tu2.gif");
+           	 chou3=new ImageIcon("jiangpin/tu3.gif");
+           
+        	
+        	
+        			
+        			label20=new JLabel(chou1);
+        			add(label20);
+        			 label20.setBounds(500,600,300,250);
+        			 label20.setVisible(true);}
+        		
+      
+		            
 
+        			
+    }
     private void initPictures() {
         List<Picture> list = new ArrayList<Picture>(ibs);
         for (int row = 0; row < pictures.length; row++) {
@@ -131,7 +175,56 @@ public class PathPanel<Ball> extends JPanel implements ActionListener {
 
 
     public void isFinished() {
-        if (maps.size() > 0) {
+    	try {    f = new File("Music/xiaodiao.wav"); 
+        uri = f.toURI();
+        url = uri.toURL();  //解析地址
+        AudioClip aau; 
+        aau = Applet.newAudioClip(url);
+        aau.play();  //循环播放
+    } catch (Exception e) 
+    { e.printStackTrace();
+    }   
+    	
+if(choujiang.yuyin==1) {
+		if(status.times.getValue()<10){
+			try {    w = new File("Music/kuai.wav"); 
+            urw = w.toURI();
+            urww = urw.toURL();  //解析地址
+            AudioClip wwu; 
+            wwu = Applet.newAudioClip(urww);
+            wwu.play();  //循环播放
+        } catch (Exception e) 
+        { e.printStackTrace();
+        }   
+			label20.setVisible(false);
+			label20=new JLabel(chou3);
+			add(label20,1);
+			 label20.setBounds(500,600,300,250);
+			 label20.setVisible(true);}
+			 else {if(jishi==1) {jiehe=1+jiehe;}
+			 		else{jishi=1;jiehe=0;}
+			 if(jishi==1&&jiehe==4) {label20.setVisible(false);
+	 			label20=new JLabel(chou2);
+	 			add(label20);
+	 			 label20.setBounds(500,600,300,250);
+	 			 label20.setVisible(true);
+				 jishi=0;jiehe=0;
+				 try {    t = new File("Music/taibangle.wav"); 
+		            urt = t.toURI();
+		            urtt = urt.toURL();  //解析地址
+		            AudioClip ttu; 
+		            ttu = Applet.newAudioClip(urtt);
+		            ttu.play();  //循环播放
+		        } catch (Exception e) 
+		        { e.printStackTrace();
+		        }   
+			 }
+		    	else{label20.setVisible(false);
+ 			label20=new JLabel(chou1);
+ 			add(label20);
+ 			 label20.setBounds(500,600,300,250);
+ 			 label20.setVisible(true);} }}
+        if (maps.size() > 0) {        
             return;
         }
         else {
@@ -144,7 +237,7 @@ public class PathPanel<Ball> extends JPanel implements ActionListener {
          //   setVisible(false);//隐藏当前面板
          //   n2.add(p2);//在窗口中添加面板p1
         //    n2.setVisible(true);//显示面板                 
-        Maingameshow.level++;
+      //  Maingameshow.level++;
         ibs.clear();
         ibs = IconsManage.getRandomIcons(rows * columns, maps);
         initPictures();}
@@ -512,10 +605,11 @@ public class PathPanel<Ball> extends JPanel implements ActionListener {
 
         return null;
     }
-public void tishi() {
+    public void tishi() {
+    	jiehe=0;
         Picture[] maped = getMappedButtons();
         if (maped == null) {
-            JOptionPane.showMessageDialog(this, "哈哈，你死了！！");
+            JOptionPane.showMessageDialog(this, "请尝试重列！");
             return;
         }
         if (front_click != null) {
@@ -529,6 +623,7 @@ public void tishi() {
         repaint(maped[1].getX(), maped[1].getY(), WIDTH + BORDER, HEIGHT + BORDER);
 
     }
+
 
     /**
      * 重列

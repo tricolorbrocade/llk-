@@ -1,6 +1,7 @@
 package net.walsece.game;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
@@ -19,6 +20,7 @@ public class guodu1 extends javax.swing.JPanel {
      * Creates new form guodu1
      */
 	JFrame n2=null;
+	JLabel textFiel=null;
 	private JButton play, more, button;
 	private ImageIcon imgPlay, imgMore;//首页图片宽和高 和临时变量Play键More键
     public guodu1(JFrame n2) { Maingameshow.level++;
@@ -36,21 +38,26 @@ public class guodu1 extends javax.swing.JPanel {
         more = new javax.swing.JButton();//添加按钮
         more.setText("测试2");
         add(more);
-        more.setBounds(225,225,115,115);
+        more.setBounds(300,500,145,75);;
         more.setBorderPainted(false);
         play = new JButton();
         add(play);
         play.setText("测试1");
-        play.setBounds(115,115,115,115);
+        play.setBounds(300,400,145,75);
         play.setBorderPainted(false);
-        imgPlay = new ImageIcon("D:\\\\\\\\方锦鑫\\\\\\\\Pictures\\\\\\\\u=2629648377,3202501847&fm=27&gp.jpg");
-		imgMore = new ImageIcon("icons/png-0529.png");
+        imgPlay = new ImageIcon("button/next.png");
+		imgMore = new ImageIcon("button/back.png");
 		play.setIcon(imgPlay);
 		more.setIcon(imgMore);
-    	ImageIcon image = new ImageIcon("D:\\\\方锦鑫\\\\Pictures\\\\u=2629648377,3202501847&fm=27&gp.jpg");
+		textFiel=new JLabel("金币"+(++choujiang.jinbi));
+        textFiel.setFont(new Font("宋体", Font.BOLD, 30));
+   	 add(textFiel,1);
+   	 textFiel.setBounds(500,360,100,100);
+   	 textFiel.setVisible(true);
+    	ImageIcon image = new ImageIcon("background/xiayiguan.png");
     	 JLabel label = new JLabel();
     	 label.setIcon(image);
-    	 label.setBounds(0,0,500,312);
+    	 label.setBounds(0,0,800,760);
     	 add(label);
     	 more.requestFocus();
     	 play.requestFocus();
@@ -85,7 +92,7 @@ public class guodu1 extends javax.swing.JPanel {
 	    more.addActionListener(new java.awt.event.ActionListener() {
 	        public void actionPerformed(java.awt.event.ActionEvent evt) {
 	            jButton1ActionPerformed(evt);
-	            Maingameshow p3=new Maingameshow(n2);//新建面板guodu12，并将窗口n2传入
+	            NewJPanel p3=new NewJPanel(n2);//新建面板failed2，并将窗口n2传入
 	            setVisible(false);//隐藏当前面板
 	            n2.add(p3);//在窗口中添加面板p1
 	            n2.setVisible(true);//显示面板

@@ -8,17 +8,17 @@ import java.awt.event.*;
 import java.util.Timer;
 public class status extends JPanel {
 
-
+	 public    int times_tishi = 3;
+	 public   int times_resort = 3;
     private long time = 600 * 50;
     private PathPanel main;
     private boolean stoped = false;
     ImageIcon pause = new ImageIcon(getClass().getResource("/net/walsece/game/icons/pause.png"));
     ImageIcon con = new ImageIcon(getClass().getResource("/net/walsece/game/icons/continue.png"));
-    private int times_tishi = 3;
-    private int times_resort = 3;
+
     //JFrame frame = new JFrame("Á¬Á¬¿´");//´°ÌåÃû³Æ
     JFrame n2=null;
-   
+
     public status(JFrame n2,PathPanel path) {
     //	
     	this.n2=n2;
@@ -31,8 +31,8 @@ public class status extends JPanel {
             	
                 while (true) {
                  
-					if (PathPanel.maps.size() > 0) {
 					
+                	if (PathPanel.maps.size() > 0) {
                    if (stoped==true) {
                 	  
                 	   
@@ -50,10 +50,8 @@ public class status extends JPanel {
                     t--;
                     times.setValue(t);  
                     if (t <= 0) {
-                  	JOptionPane.showMessageDialog(null, "¹þ¹þ£¬ÄãËÀÁË","¹þ¹þ£¬ÄãËÀÁË", JOptionPane.ERROR_MESSAGE);
-                     
-                  	 
-                  	setVisible(false);
+                  //	JOptionPane.showMessageDialog(null, "¹þ¹þ£¬ÄãËÀÁË","¹þ¹þ£¬ÄãËÀÁË", JOptionPane.ERROR_MESSAGE);
+                    	setVisible(false);
                   	break;
                        
                        
@@ -64,9 +62,11 @@ public class status extends JPanel {
                         break;
                     }
                     
-                } else {setVisible(false);
+                } 
+                else {setVisible(false);
                 	break;
-                }}
+                }
+            }
                
                 }
             
@@ -76,12 +76,16 @@ public class status extends JPanel {
                 if (times.getValue() <= 0) {
                 	JOptionPane.showMessageDialog(null, "¹þ¹þ£¬ÄãËÀÁË","¹þ¹þ£¬ÄãËÀÁË", JOptionPane.ERROR_MESSAGE);
                     
-                    
+                    */
                 
-                */
+                
                 
             
                }).start();
+               
+ 
+      
+         
         this.main = path;
         stop.setIcon(pause);
      
@@ -91,7 +95,7 @@ public class status extends JPanel {
 
         this.tishi.setText("ÌáÊ¾¡Á" + (--times_tishi));
         main.tishi();
-        if (times_tishi <= 0) {
+        if (times_tishi<0) {
             this.tishi.setEnabled(false);
         }
     }
@@ -299,7 +303,7 @@ public class status extends JPanel {
         }
         add(panel2);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
-        }
+    }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - wang tao
@@ -310,7 +314,7 @@ public class status extends JPanel {
     private JSlider slider1;
     private JPanel vSpacer1;
     private JPanel panel2;
-    public static JProgressBar times;
+   public static JProgressBar times;
     private JButton stop;
     private JButton tishi;
     private JButton resort;
@@ -326,4 +330,3 @@ public class status extends JPanel {
     private JLabel label14;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
-
